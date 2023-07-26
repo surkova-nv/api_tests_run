@@ -17,8 +17,8 @@ inputs:
 env:
   PST_API_URL: 'https://api.getpostman.com'
   NEWMAN_RUN_CMD: |
-            newman run "$PST_API_URL/collections/${{ inputs.collection_iud }}?apikey=${{ inputs.postman_api_key }}" \
-            -e "$PST_API_URL/environments/${{ inputs.environment_uid }}?apikey=${{ inputs.postman_api_key }}" \
+            newman run "$PST_API_URL/collections/${{ vars.collection_iud }}?apikey=${{ vars.postman_api_key }}" \
+            -e "$PST_API_URL/environments/${{ vars.environment_uid }}?apikey=${{ vars.postman_api_key }}" \
             --reporters cli, junit
 
 runs:
