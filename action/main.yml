@@ -1,0 +1,11 @@
+name: Newman Run
+
+on:
+  workflow_dispatch
+
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
