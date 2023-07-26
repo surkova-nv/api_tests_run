@@ -3,16 +3,13 @@ name: RunCollection
 runs:
   using: composite
   steps:
-      name: newman_prepare
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@master
         
-        - name: Install Node
-          uses: actions/setup-node@v3
-          with:
-            node-version: 19
+    - name: Install Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 19
           
-        - name: Install Newman
-          run: npm install -g newman
+    - name: Install Newman
+      run: npm install -g newman
