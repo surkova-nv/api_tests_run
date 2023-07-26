@@ -1,0 +1,6 @@
+.idea
+.pytest_cache
+/tests/__pycache__
+lib/__pycache__
+logs/*
+test_results/*
