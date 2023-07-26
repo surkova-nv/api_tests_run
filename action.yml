@@ -1,8 +1,6 @@
 name: RunCollection
 
 inputs:
-  collection_title:
-    required: true
   postman_api_key: 
     required: true
   collection_iud:
