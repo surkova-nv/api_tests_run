@@ -3,12 +3,16 @@ name: RunCollection
 inputs:
   collection_title:
     required: true
+    type: string
   postman_api_key: 
     required: true
+    type: string
   collection_iud:
     required: true
+    type: string
   environment_uid: 
     required: true
+    type: string
 
 env:
   PST_API_URL: 'https://api.getpostman.com'
@@ -32,6 +36,6 @@ runs:
       shell: bash
       run: npm install -g newman
 
-    - name: ${{inputs.collection_title}}
+    - name: echo ${{inputs.collection_title}}
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
