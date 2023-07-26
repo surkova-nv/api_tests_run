@@ -36,6 +36,6 @@ runs:
       shell: bash
       run: npm install -g newman
 
-    - name: echo ${{inputs.collection_title}}
+    - name: Run newman
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
