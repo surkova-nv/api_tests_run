@@ -1,5 +1,22 @@
 name: RunCollection
 
+inputs:
+  collection_title:
+    required: true
+  postman_api_key: 
+    required: true
+  collection_iud:
+    required: true
+  environment_uid: 
+    required: true
+
+env:
+  PST_API_URL: 'https://api.getpostman.com'
+  NEWMAN_RUN_CMD: |
+            newman run "$PST_API_URL/collections/${{ inputs.collection_iud }}?apikey=${{ inputs.postman_api_key }}" \
+            -e "$PST_API_URL/environments/${{ inputs.environment_uid }}?apikey=${{ inputs.postman_api_key }}" \
+            --reporters cli, junit
+
 runs:
   using: composite
   steps:
@@ -14,3 +31,6 @@ runs:
     - name: Install Newman
       shell: bash
       run: npm install -g newman
+
+    - name: ${{ inputs.collection_title }}
+      run: ${{env.NEWMAN_RUN_CMD}}
