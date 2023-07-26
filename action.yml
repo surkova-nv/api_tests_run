@@ -3,21 +3,17 @@ name: RunCollection
 inputs:
   collection_title:
     required: true
-    type: string
   postman_api_key: 
     required: true
-    type: string
   collection_iud:
     required: true
-    type: string
   environment_uid: 
     required: true
-    type: string
 
 env:
   PST_API_URL: 'https://api.getpostman.com'
   NEWMAN_RUN_CMD: |
-            newman run "$PST_API_URL/collections/${{ vars.collection_iud }}?apikey=${{ vars.postman_api_key }}" \
+            newman run "$PST_API_URL/collections/$collection_iud?apikey=${{ vars.postman_api_key }}" \
             -e "$PST_API_URL/environments/${{ vars.environment_uid }}?apikey=${{ vars.postman_api_key }}" \
             --reporters cli, junit
 
