@@ -37,7 +37,7 @@ runs:
       run: ${{env.NEWMAN_RUN_CMD}}
 
     - name: Output the results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Reports
         path: reports
