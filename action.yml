@@ -36,12 +36,8 @@ runs:
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
 
-    # Store test results for the "Test Summary" tab
-    - store_test_results:
-        path: test-results
-    # Store test results in the "Artifacts" tab
-    - store_artifacts:
-        path: test-results
-    # Store test reports in the "Artifacts" tab
-    - store_artifacts:
-        path: test-reports
+    - name: Output the results
+      uses: actions/upload-artifact@v2
+      with:
+        name: Reports
+        path: testArtifacts
