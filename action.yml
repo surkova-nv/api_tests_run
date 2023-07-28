@@ -35,9 +35,3 @@ runs:
     - name: Run newman
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
-
-    - name: Output the results
-      uses: actions/upload-artifact@v3
-      with:
-        name: newman_results
-        path: reports
