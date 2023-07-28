@@ -13,7 +13,7 @@ env:
   NEWMAN_RUN_CMD: |
             newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
             -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
-            -r html --reporter-html-template template-default-colored.hbs
+            -r htmlextra --reporter-htmlextra-export reports/test_report.html
 
 runs:
   using: composite
@@ -28,7 +28,9 @@ runs:
           
     - name: Install Newman
       shell: bash
-      run: npm install -g newman
+      run: |
+        npm install -g newman
+        npm install -g newman-reporter-htmlextra
 
     - name: Run newman
       shell: bash
