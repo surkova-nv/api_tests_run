@@ -13,7 +13,10 @@ env:
   NEWMAN_RUN_CMD: |
             newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
             -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
-            --reporters cli,htmlextra,junit --reporter-htmlextra-export "reports/report.html" --reporter-junit-export "reports/report.xml"
+            -r cli,junitfull,htmlextra --reporter-htmlextra-browserTitle "Browser title" \
+            --reporter-htmlextra-title "Test title"  \
+            --reporter-htmlextra-showEnvironmentData \
+            --reporter-htmlextra-showGlobalData --reporter-junitfull-export junitReport.xml --reporter-htmlextra-export report.html
 
 runs:
   using: composite
@@ -30,8 +33,16 @@ runs:
       shell: bash
       run: |
         npm install -g newman
-        npm install -g newman-reporter-htmlextra
+        npm install newman-reporter-junitfull -g
+        npm install newman-reporter-htmlextra -g
 
     - name: Run newman
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
+
+    - name: PublishTestResults@2
+      displayName: Publish Test Results
+      continueOnError: true
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: reports/junitReport.xml
