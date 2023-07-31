@@ -27,10 +27,10 @@ runs:
     - name: Run newman
       shell: bash
       env:
-        custom_param: ${{ inputs.custom_param }}
+        custom_param: ${{ inputs.pst_clc_uid }}
       run: |
         newman run "https://api.getpostman.com/collections/${{ matrix.CLC_UID }}?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
-        echo "!!!!!!!!: $pst_clc_uid"
+        echo "!!!!!!!!: $custom_param"
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
