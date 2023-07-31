@@ -32,6 +32,15 @@ runs:
         npm install -g newman
         npm install -S newman-reporter-htmlextra
 
+    - name: Make Directory for results
+      run: mkdir -p testResults
+
     - name: Run newman
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
+
+    - name: Output the run Details
+      uses: actions/upload-artifact@v2
+      with:
+        name: RunReports
+        path: testResults
