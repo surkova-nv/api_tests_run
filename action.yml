@@ -37,10 +37,7 @@ runs:
     - name: Run newman
       shell: bash
       run: |
-        newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
-            -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
-            -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
-
+        newman run "https://api.getpostman.com/collections/$collection_iud?apikey=$postman_api_key" -e "https://api.getpostman.com/environments/$environment_uid?apikey=$postman_api_key" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
