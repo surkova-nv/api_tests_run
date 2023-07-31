@@ -28,7 +28,7 @@ runs:
     - name: Run newman
       shell: bash
       run: |
-        newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
+        newman run "https://api.getpostman.com/collections/${{ matrix.CLC_UID }}?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
