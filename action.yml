@@ -1,7 +1,6 @@
 name: RunCollection
 runs:
   using: composite
-  continue-on-error: true
   steps:
     - name: Checkout
       uses: actions/checkout@master
