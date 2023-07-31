@@ -35,6 +35,10 @@ runs:
     - name: Make Directory
       shell: bash
       run: mkdir -p newman-results
+    
+    - name: Path
+      shell: bash
+      run: pwd
 
     - name: Run newman
       shell: bash
