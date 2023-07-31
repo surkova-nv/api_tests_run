@@ -35,14 +35,14 @@ runs:
     - name: Make Directory
       shell: bash
       run: mkdir -p newman-results
-    
-    - name: Path
-      shell: bash
-      run: echo ${{env.NEWMAN_RUN_CMD}}
 
     - name: Run newman
       shell: bash
-      run: ${{env.NEWMAN_RUN_CMD}}
+      run: |
+        newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
+            -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
+            -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
+
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
