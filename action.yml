@@ -33,6 +33,7 @@ runs:
         npm install -S newman-reporter-htmlextra
 
     - name: Make Directory for results
+      shell: bash
       run: mkdir -p testResults
 
     - name: Run newman
