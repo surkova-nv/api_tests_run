@@ -41,13 +41,13 @@ runs:
         echo "api: $PST_API_KEY"
         echo "env: $ENV_UID"
 
-    - name: Run newman
-      shell: bash
-      run: |
-        newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
+    # - name: Run newman
+    #   shell: bash
+    #   run: |
+    #     newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
-    - name: Upload Results
-      uses: actions/upload-artifact@v3
-      with:
-        name: Postman_Test_Reports
-        path: newman-results
+    # - name: Upload Results
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: Postman_Test_Reports
+    #     path: newman-results
