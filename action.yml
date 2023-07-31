@@ -33,8 +33,6 @@ runs:
       shell: bash
       run: |
         echo "clc: ${{ matrix.test_data.CLC_UID }}"
-        echo "api: $PST_API_KEY"
-        echo "env: $ENV_UID"
 
     # - name: Run newman
     #   shell: bash
