@@ -1,6 +1,6 @@
 name: RunCollection
 inputs:
-  pst_clc_uid:
+  PST_CLC_UID:
     description: Custom input parameter
     required: true
 runs:
@@ -27,7 +27,7 @@ runs:
     - name: Run newman
       shell: bash
       env:
-        custom_param: ${{ inputs.pst_clc_uid }}
+        custom_param: ${{ inputs.PST_CLC_UID }}
       run: |
         newman run "https://api.getpostman.com/collections/${{ matrix.CLC_UID }}?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
         echo "!!!!!!!!: $custom_param"
