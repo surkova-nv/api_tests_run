@@ -20,11 +20,6 @@ runs:
       shell: bash
       run: mkdir -p newman-results
 
-    - name: check inputs
-      shell: bash
-      run: |
-        echo "clc: ${{ matrix.CLC_UID }}"
-
     - name: Run newman
       shell: bash
       run: |
