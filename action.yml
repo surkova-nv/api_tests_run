@@ -37,9 +37,9 @@ runs:
     - name: check inputs
       shell: bash
       run: |
-        echo $collection_iud
-        echo $postman_api_key
-        echo $environment_uid
+        echo "$collection_iud"
+        echo "$postman_api_key"
+        echo "$environment_uid"
 
     - name: Run newman
       shell: bash
