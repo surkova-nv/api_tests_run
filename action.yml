@@ -8,11 +8,6 @@ name: RunCollection
   # ENV_UID: 
   #   required: true
 
-env:
-  PST_API_URL: 'https://api.getpostman.com'
-  NEWMAN_RUN_CMD: |
-            newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
-
 runs:
   using: composite
   steps:
@@ -37,7 +32,7 @@ runs:
     - name: check inputs
       shell: bash
       run: |
-        echo "clc: $CLC_UID"
+        echo "clc: ${{ matrix.test_data.CLC_UID }}"
         echo "api: $PST_API_KEY"
         echo "env: $ENV_UID"
 
