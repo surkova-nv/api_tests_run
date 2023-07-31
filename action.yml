@@ -1,6 +1,6 @@
 name: RunCollection
 inputs:
-  custom_param:
+  pst_clc_uid:
     description: Custom input parameter
     required: true
 runs:
@@ -30,7 +30,7 @@ runs:
         custom_param: ${{ inputs.custom_param }}
       run: |
         newman run "https://api.getpostman.com/collections/${{ matrix.CLC_UID }}?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
-        echo "!!!!!!!!: $custom_param"
+        echo "!!!!!!!!: $pst_clc_uid"
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
