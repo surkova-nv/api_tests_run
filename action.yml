@@ -24,7 +24,7 @@ runs:
     - name: check inputs
       shell: bash
       run: |
-        echo "clc: ${{ matrix.test_data.CLC_UID }}"
+        echo "clc: ${{ matrix.CLC_UID }}"
 
     # - name: Run newman
     #   shell: bash
