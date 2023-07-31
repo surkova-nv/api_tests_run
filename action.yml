@@ -13,7 +13,7 @@ env:
   NEWMAN_RUN_CMD: |
             newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
             -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
-            -r cli,htmlextra --reporter-html-export reports
+            -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
 runs:
   using: composite
@@ -32,16 +32,16 @@ runs:
         npm install -g newman
         npm install -S newman-reporter-htmlextra
 
-    - name: Make Directory for results
+    - name: Make Directory
       shell: bash
-      run: mkdir -p testResults
+      run: mkdir -p newman-results
 
     - name: Run newman
       shell: bash
       run: ${{env.NEWMAN_RUN_CMD}}
 
-    - name: Output the run Details
+    - name: Upload Results
       uses: actions/upload-artifact@v3
       with:
-        name: RunReports
-        path: reports
+        name: Postman_Test_Reports
+        path: newman-results
