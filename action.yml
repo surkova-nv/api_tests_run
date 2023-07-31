@@ -38,7 +38,7 @@ runs:
     
     - name: Path
       shell: bash
-      run: pwd
+      run: echo ${{env.NEWMAN_RUN_CMD}}
 
     - name: Run newman
       shell: bash
