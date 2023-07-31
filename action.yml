@@ -1,11 +1,11 @@
 name: RunCollection
 
 inputs:
-  postman_api_key: 
+  PST_API_KEY: 
     required: true
-  collection_iud:
+  CLC_UID:
     required: true
-  environment_uid: 
+  ENV_UID: 
     required: true
 
 env:
@@ -37,14 +37,14 @@ runs:
     - name: check inputs
       shell: bash
       run: |
-        echo "$collection_iud"
-        echo "$postman_api_key"
-        echo "$environment_uid"
+        echo "$CLC_UID"
+        echo "$PST_API_KEY"
+        echo "$ENV_UID"
 
     - name: Run newman
       shell: bash
       run: |
-        newman run "https://api.getpostman.com/collections/$collection_iud?apikey=$postman_api_key" -e "https://api.getpostman.com/environments/$environment_uid?apikey=$postman_api_key" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
+        newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
