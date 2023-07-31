@@ -11,7 +11,7 @@ inputs:
 env:
   PST_API_URL: 'https://api.getpostman.com'
   NEWMAN_RUN_CMD: |
-            newman run "https://api.getpostman.com/collections/$collection_iud?apikey=$postman_api_key" -e "https://api.getpostman.com/environments/$environment_uid?apikey=$postman_api_key" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
+            newman run "https://api.getpostman.com/collections/$CLC_UID?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
 
 runs:
   using: composite
