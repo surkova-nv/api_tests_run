@@ -1,13 +1,5 @@
 name: RunCollection
 
-# inputs:
-  # PST_API_KEY: 
-  #   required: true
-  # CLC_UID:
-  #   required: true
-  # ENV_UID: 
-  #   required: true
-
 runs:
   using: composite
   steps:
