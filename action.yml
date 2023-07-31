@@ -37,9 +37,9 @@ runs:
     - name: check inputs
       shell: bash
       run: |
-        echo "$CLC_UID"
-        echo "$PST_API_KEY"
-        echo "$ENV_UID"
+        echo "clc: $CLC_UID"
+        echo "api: $PST_API_KEY"
+        echo "env: $ENV_UID"
 
     - name: Run newman
       shell: bash
