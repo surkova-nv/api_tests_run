@@ -2,7 +2,7 @@ name: RunCollection
 inputs:
   PST_CLC_UID:
     required: true
-  custom_param:
+  PST_ENV_UID:
     required: true
 runs:
   using: composite
@@ -29,10 +29,10 @@ runs:
       shell: bash
       env:
         clc: ${{ inputs.PST_CLC_UID }}
-        custom_param: ${{ inputs.custom_param }}
+        env: ${{ inputs.PST_ENV_UID }}
       run: |
-        newman run "https://api.getpostman.com/collections/$clc?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$ENV_UID?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
-        echo "!!!!!!!!: $custom_param"
+        newman run "https://api.getpostman.com/collections/$clc?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$env?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
+        echo "!!!!!!!!: $env"
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
