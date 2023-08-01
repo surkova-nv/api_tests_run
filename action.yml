@@ -4,6 +4,8 @@ inputs:
     required: true
   PST_ENV_UID:
     required: true
+  API_KEY:
+    required: true
 runs:
   using: composite
   steps:
@@ -30,9 +32,10 @@ runs:
       env:
         clc: ${{ inputs.PST_CLC_UID }}
         env: ${{ inputs.PST_ENV_UID }}
+        key: ${{ inputs.API_KEY }}
       run: |
         newman run "https://api.getpostman.com/collections/$clc?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$env?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
-        echo "!!!!!!!!: $env"
+        echo "!!!!!!!!: $key"
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
