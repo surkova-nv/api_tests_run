@@ -6,6 +6,8 @@ inputs:
     required: true
   API_KEY:
     required: true
+  TITLE:
+    required: true
 runs:
   using: composite
   steps:
@@ -33,9 +35,10 @@ runs:
         clc: ${{ inputs.PST_CLC_UID }}
         env: ${{ inputs.PST_ENV_UID }}
         key: ${{ inputs.API_KEY }}
+        title: ${{ inputs.TITLE }}
       run: |
-        newman run "https://api.getpostman.com/collections/$clc?apikey=$PST_API_KEY" -e "https://api.getpostman.com/environments/$env?apikey=$PST_API_KEY" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
-        echo "!!!!!!!!: $key"
+        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport-${{ matrix.TITLE }}.html
+        echo "!!!!!!!!: $title"
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
