@@ -26,10 +26,12 @@ runs:
         npm install -g newman-reporter-htmlextra
 
     - name: Make Directory
+      if: always()
       shell: bash
       run: mkdir -p newman-results
 
     - name: Run newman
+      if: always()
       shell: bash
       env:
         clc: ${{ inputs.PST_CLC_UID }}
