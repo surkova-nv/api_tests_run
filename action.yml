@@ -8,6 +8,8 @@ inputs:
     required: true
   TITLE:
     required: true
+  URL:
+    required: true
 runs:
   using: composite
   steps:
@@ -38,8 +40,9 @@ runs:
         env: ${{ inputs.PST_ENV_UID }}
         key: ${{ inputs.API_KEY }}
         title: ${{ inputs.TITLE }}
+        url: ${{ inputs.URL }}
       run: |
-        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli,junit,slackreporter --reporter-htmlextra-export newman-results/htmlreport-$title.html --reporter-slackreporter-webhookurl ${{secrets.SLACK_WEBHOOK_URL}}
+        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli,junit,slackreporter --reporter-htmlextra-export newman-results/htmlreport-$title.html --reporter-slackreporter-webhookurl $url
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
