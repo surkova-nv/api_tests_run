@@ -39,7 +39,7 @@ runs:
         key: ${{ inputs.API_KEY }}
         title: ${{ inputs.TITLE }}
       run: |
-        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli,junit --reporter-htmlextra-export newman-results/htmlreport-$title.html
+        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli,junit,slackreporter --reporter-htmlextra-export newman-results/htmlreport-$title.html --reporter-slackreporter-webhookurl ${{secrets.SLACK_WEBHOOK_URL}}
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
