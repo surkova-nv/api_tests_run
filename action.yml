@@ -1,20 +1,13 @@
 name: RunCollection
-
 inputs:
-  postman_api_key: 
+  PST_CLC_UID:
     required: true
-  collection_iud:
+  PST_ENV_UID:
     required: true
-  environment_uid: 
+  API_KEY:
     required: true
-
-env:
-  PST_API_URL: 'https://api.getpostman.com'
-  NEWMAN_RUN_CMD: |
-            newman run "$PST_API_URL/collections/$collection_iud?apikey=$postman_api_key" \
-            -e "$PST_API_URL/environments/$environment_uid?apikey=$postman_api_key" \
-            -r htmlextra,cli --reporter-htmlextra-export newman-results/htmlreport.html
-
+  TITLE:
+    required: true
 runs:
   using: composite
   steps:
@@ -22,7 +15,7 @@ runs:
       uses: actions/checkout@master
         
     - name: Install Node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3.7.0
       with:
         node-version: 19
           
@@ -30,18 +23,27 @@ runs:
       shell: bash
       run: |
         npm install -g newman
-        npm install -S newman-reporter-htmlextra
+        npm install -g newman-reporter-htmlextra
 
     - name: Make Directory
+      if: always()
       shell: bash
       run: mkdir -p newman-results
 
     - name: Run newman
+      if: always()
       shell: bash
-      run: ${{env.NEWMAN_RUN_CMD}}
+      env:
+        clc: ${{ inputs.PST_CLC_UID }}
+        env: ${{ inputs.PST_ENV_UID }}
+        key: ${{ inputs.API_KEY }}
+        title: ${{ inputs.TITLE }}
+      run: |
+        newman run "https://api.getpostman.com/collections/$clc?apikey=$key" -e "https://api.getpostman.com/environments/$env?apikey=$key" -r htmlextra,cli,junit --reporter-htmlextra-export newman-results/htmlreport-$title.html
 
     - name: Upload Results
       uses: actions/upload-artifact@v3
+      if: always()
       with:
         name: Postman_Test_Reports
         path: newman-results
