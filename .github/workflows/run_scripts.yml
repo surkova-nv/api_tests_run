@@ -1,0 +1,16 @@
+name: Run test scripts
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 7 * * 1-5'
+  
+jobs:
+  newman:
+    name: Postman-tests
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
